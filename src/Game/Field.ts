@@ -8,7 +8,8 @@ export default class Field {
   private sprite: any;
   constructor(type: number, color?: number) {
     this.type = type;
-    this.sprite = new GamePrimitive(RectanglePrimitive(color), Game.renderer.stage);
+    this.sprite = color ? new GamePrimitive(RectanglePrimitive(color), Game.renderer.stage) 
+      : new GamePrimitive(new PIXI.Graphics(), Game.renderer.stage);
     this.sprite._w = BlockSize;
     this.sprite.x = 10;
     this.sprite.y = 10;
@@ -18,6 +19,9 @@ export default class Field {
   }
   set y(y) {
     this.sprite.y = y;
+  }
+  free() {
+    this.sprite.free();
   }
 }
 
@@ -29,4 +33,9 @@ export class Bricks extends Field {
 export const WallType = 2;
 export class Wall extends Field {
   constructor() { super(WallType, 0xFF00FF); }
+}
+
+export const BombType = 3;
+export class Bomb extends Field {
+  constructor() { super(BombType, 0x111111); }
 }

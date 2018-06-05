@@ -4,7 +4,6 @@ function GenerateField(x, y) {
   if( ((x%2)===1) && ((y%2)===1) ) return new Wall();
   if( (x<2) && (y<2) ) return new Field(0);
   const v = Math.floor(Math.random() * 2);
-  // if(v) new Colider(x, y, this._engine.stage);
   return v ? new Field(0) : new Bricks;
 }
 

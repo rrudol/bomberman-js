@@ -16,12 +16,17 @@ export default class GamePrimitive {
   public _x: number;
   public _y: number;
   public _w: number;
+  private stage: any;
   constructor(obj: any, stage: any) {
     this._x = 0;
     this._y = 0;
     this._w = 48;
     this.obj = obj;
-    stage.addChild(obj);
+    this.stage = stage;
+    this.stage.addChild(this.obj);
+  }
+  free() {
+    this.stage.removeChild(this.obj);
   }
   get x() {
     return this._x;
